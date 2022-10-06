@@ -13,7 +13,11 @@ public class UploadServerThread extends Thread {
          HttpServletRequest req = new HttpServletRequest(in);  
          OutputStream baos = new ByteArrayOutputStream(); 
          HttpServletResponse res = new HttpServletResponse(baos); 
-         HttpServlet httpServlet = new UploadServlet();
+         Class<?> c = Class.forName("UploadServlet");
+         System.out.println(c);
+         HttpServlet upload = (UploadServlet) c.getDeclaredConstructor().newInstance();
+         System.out.println(upload);
+         HttpServlet httpServlet = upload; //new UploadServlet(); // where reflection has to work, different server names, all classes must extend http servlet
          httpServlet.doPost(req, res);
          OutputStream out = socket.getOutputStream(); 
          out.write(((ByteArrayOutputStream) baos).toByteArray());
@@ -21,3 +25,6 @@ public class UploadServerThread extends Thread {
       } catch (Exception e) { e.printStackTrace(); }
    }
 }
+
+//    Class<?> c = Class.forName("reflection.Dog");
+	//	Dog d = (Dog) c.getDeclaredConstructor().newInstance();
