@@ -13,11 +13,6 @@ import javax.servlet.http.HttpServlet;
  * Servlet extends HttpServlet as our abstract class for future servlets.
  */
 public abstract class Servlet extends HttpServlet {
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
-
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
-    }
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{};
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {};
 }
